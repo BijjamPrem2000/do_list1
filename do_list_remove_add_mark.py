@@ -50,30 +50,27 @@ def mark_completed():
 def remove_task():
     try:
         task_numbers = input("Enter the task number(s) to remove (comma-separated): ")
-        task_numbers = [int(num) for num in task_numbers.split(',')]  # Convert input to a list of integers
-
+        task_numbers = [int(num) for num in task_numbers.split()]  # Convert input to a list of integers
+        task_numbers.sort(reverse=True)
+        print(task_numbers)
         with open("tasks.txt", "r+") as file:
             tasks = file.readlines()
-
             # Initialize a list to store removed tasks for later display
             removed_tasks = []
-
+            t=len(tasks)
             for task_number in task_numbers:
-                if 1 <= task_number <= len(tasks):
+                if 1 <= task_number <= t:
                     removed_task = tasks.pop(task_number - 1)
                     removed_tasks.append(removed_task.strip())  # Add removed task to the list
                 else:
                     print(f"Invalid task number: {task_number}")
-
             # Move the file cursor to the beginning, write updated tasks, and truncate the file
             file.seek(0)
             file.writelines(tasks)
             file.truncate()
-
             # Display the removed tasks
             for removed_task in removed_tasks:
                 print(f"Removed task: {removed_task}")
-
     except ValueError:
         print("Invalid input. Please enter valid task number(s) separated by commas.")
 
