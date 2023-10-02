@@ -9,7 +9,7 @@ def main_menu():
 # You can add more functions for each menu option later.
 def add_task():
     task_paragraph = input("Enter a new task: ")
-    tasks = task_paragraph.split()
+    tasks = task_paragraph.split(",")
     with open("tasks.txt", "a") as file:
         #open the file tasks.txt and append the data("a") name it as the "file" :
         # "with" command is used to close the file completely after the tasks are done
