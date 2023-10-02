@@ -33,7 +33,6 @@ def view_tasks():
     except FileNotFoundError:#file not found error
         print("No tasks found.")
 def mark_completed():
-    view_tasks()
     try:
         task_number = int(input("Enter the task number to mark as completed: "))
         with open("tasks.txt", "r+") as file:# the "r+"  is used to perform both read and write operation
@@ -49,7 +48,6 @@ def mark_completed():
     except ValueError:#incorrect value entered
         print("Invalid input. Please enter a valid task number.")
 def remove_task():
-    view_tasks()
     try:
         task_numbers = input("Enter the task number(s) to remove (comma-separated): ")
         task_numbers = [int(num) for num in task_numbers.split(',')]  # Convert input to a list of integers
